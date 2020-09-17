@@ -5,7 +5,8 @@ END = '\n\n'
 INDENT = ' ' * 4
 
 # Задание 1
-# Дан список учеников, нужно посчитать количество повторений каждого имени ученика.
+# Дан список учеников,
+# нужно посчитать количество повторений каждого имени ученика.
 # Пример вывода:
 # Вася: 1
 # Маша: 2
@@ -50,7 +51,8 @@ print('самое часто повторящееся имя: {}'.format(most_co
 print(END)
 
 # Задание 3
-# Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
+# Есть список учеников в нескольких классах,
+# нужно вывести самое частое имя в каждом классе.
 print('нужно вывести самое частое имя в каждом классе')
 school_students = [
   [  # это – первый класс
@@ -67,16 +69,20 @@ school_students = [
 # Самое частое имя в классе 1: Вася
 # Самое частое имя в классе 2: Маша
 
+
 def get_most_common_name(group):
     student_names = [users['first_name'] for users in group]
-    names_counter = Counter(student_names)     
+    names_counter = Counter(student_names)
     return names_counter.most_common(1)[0][0]
 
 
 for group_index, users in enumerate(school_students, 1):
     most_common_name = get_most_common_name(users)
     print(INDENT, end='')
-    print('Самое частое имя в классе {}: {}'.format(group_index, most_common_name))
+    print('Самое частое имя в классе {}: {}'.format(
+        group_index,
+        most_common_name,
+    ))
 
 
 print(END)
@@ -124,7 +130,7 @@ def assign_gender(students, is_male):
     for student in students:
         name = student['first_name']
         if is_male[name]:
-            student['gender'] = 'male' 
+            student['gender'] = 'male'
         else:
             student['gender'] = 'female'
 
@@ -134,7 +140,7 @@ def assign_gender(students, is_male):
 def count_gender_by_class(students):
     gender_count_by_class = {}
     for student in students:
-        class_id = student['class_id'] 
+        class_id = student['class_id']
         if class_id not in gender_count_by_class:
             gender_count_by_class[class_id] = {'male': 0, 'female': 0}
 
@@ -151,7 +157,8 @@ students = assign_gender(students, is_male)
 gender_count_by_class = count_gender_by_class(students)
 for class_id, stats in gender_count_by_class.items():
     print(INDENT, end='')
-    print(f"В классе {class_id}: девочек = {stats['female']}; мальчиков = {stats['male']}")
+    print(f"В классе {class_id}: девочек = {stats['female']}; \
+        мальчиков = {stats['male']}")
 
 print(END)
 # Пример вывода:
@@ -160,10 +167,11 @@ print(END)
 
 
 # Задание 5
-# По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков.
+# По информации о учениках разных классов нужно найти класс,
+# в котором больше всего девочек и больше всего мальчиков.
 school = [
     {
-        'class': '2a', 
+        'class': '2a',
         'students': [
             {'first_name': 'Маша'},
             {'first_name': 'Оля'}
@@ -172,7 +180,7 @@ school = [
     {
         'class': '3c',
         'students': [
-            {'first_name': 'Олег'}, 
+            {'first_name': 'Олег'},
             {'first_name': 'Миша'}
         ]
     },
@@ -191,10 +199,11 @@ is_male = {
 students = get_students(school)
 students = assign_gender(students, is_male)
 gender_count_by_class = count_gender_by_class(students)
-print('нужно найти класс, в котором больше всего девочек и больше всего мальчиков')
+print('нужно найти класс, в котором больше всего девочек \
+    и больше всего мальчиков')
 max_male_cnt = 0
 max_female_cnt = 0
-max_male_class = None 
+max_male_class = None
 max_female_class = None
 for class_id, stats in gender_count_by_class.items():
     if stats['male'] > max_male_cnt:
@@ -209,4 +218,3 @@ print(INDENT, end='')
 print(f'Больше всего мальчиков в классе {max_male_class}')
 print(INDENT, end='')
 print(f'Больше всего девочек в классе {max_female_class}')
-

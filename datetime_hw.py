@@ -1,5 +1,5 @@
 
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
 
 dt_now = datetime.now()
 day = timedelta(1)
